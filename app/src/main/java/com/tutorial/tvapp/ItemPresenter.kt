@@ -38,7 +38,7 @@ class ItemPresenter : Presenter() {
 
         val imageview = viewHolder?.view?.findViewById<ImageView>(R.id.poster_image)
 
-        val url = "https://www.themoviedb.org/t/p/w500" + content?.poster_path
+        val url = "https://www.themoviedb.org/t/p/w342" + content?.poster_path ?: "https://img.myloview.com/stickers/white-laptop-screen-with-hd-video-technology-icon-isolated-on-grey-background-abstract-circle-random-dots-vector-illustration-400-176057922.jpg"
         Glide.with(viewHolder?.view?.context!!)
             .load(url)
             .into(imageview!!)

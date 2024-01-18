@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#282828"
+        >
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".04"
+
+            />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".08"
+
+            />
+
+        <View
+            android:id="@+id/horizontal_gradient"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/banner_gradient"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent=".75"/>
+
+        <View
+            android:id="@+id/vertical_gradient"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/gradient_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintHeight_percent=".77"/>
+
+        <TextView
+            android:id="@+id/user"
+            android:layout_width="0dp"
+            android:textColor="@color/color_white"
+            android:text="Account Info"
+            android:fontFamily="sans-serif-black"
+            android:textSize="24sp"
+            android:drawablePadding="20dp"
+            android:padding="15dp"
+            android:background="@drawable/btn_selector"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/ic_user"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent=".42"
+            app:layout_constraintStart_toEndOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/guideline_top"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/service"
+            android:layout_width="0dp"
+            android:textColor="@color/color_white"
+            android:text="Service Bought"
+            android:fontFamily="sans-serif-black"
+            android:textSize="24sp"
+            android:drawablePadding="20dp"
+            android:padding="15dp"
+            android:clickable="true"
+            android:background="@drawable/btn_selector"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/ic_service"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent=".42"
+            app:layout_constraintStart_toEndOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/user"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/history"
+            android:layout_width="0dp"
+            android:textColor="@color/color_white"
+            android:text="History"
+            android:fontFamily="sans-serif-black"
+            android:textSize="24sp"
+            android:drawablePadding="20dp"
+            android:padding="15dp"
+            android:clickable="true"
+            android:background="@drawable/btn_selector"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/ic_history"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent=".42"
+            app:layout_constraintStart_toEndOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/service"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/managerDevices"
+            android:layout_width="0dp"
+            android:textColor="@color/color_white"
+            android:text="Manager Devices"
+            android:fontFamily="sans-serif-black"
+            android:textSize="24sp"
+            android:drawablePadding="20dp"
+            android:background="@drawable/btn_selector"
+            android:padding="15dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/ic_manage"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent=".42"
+            app:layout_constraintStart_toEndOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/history"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/help"
+            android:layout_width="0dp"
+            android:textColor="@color/color_white"
+            android:text="Help Services"
+            android:fontFamily="sans-serif-black"
+            android:textSize="24sp"
+            android:drawablePadding="20dp"
+            android:clickable="true"
+            android:padding="15dp"
+            android:background="@drawable/btn_selector"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/ic_help"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent=".42"
+            app:layout_constraintStart_toEndOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/managerDevices"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/fault"
+            android:layout_width="0dp"
+            android:textColor="@color/color_white"
+            android:text="Fault Warning"
+            android:fontFamily="sans-serif-black"
+            android:textSize="24sp"
+            android:drawablePadding="20dp"
+            android:clickable="true"
+            android:background="@drawable/btn_selector"
+            android:padding="15dp"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/ic_fault"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent=".42"
+            app:layout_constraintStart_toEndOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/help"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/Logout"
+            android:layout_width="0dp"
+            android:textColor="@color/color_red"
+            android:text="Log Out"
+            android:fontFamily="sans-serif-black"
+            android:textSize="24sp"
+            android:drawablePadding="20dp"
+            android:clickable="true"
+            android:background="@drawable/btn_selector"
+            android:padding="15dp"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/ic_logout"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent=".42"
+            app:layout_constraintStart_toEndOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/fault"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -7,13 +7,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.leanback.app.RowsSupportFragment
 import androidx.leanback.widget.*
+import com.tutorial.tvapp.model.CastResponse
 
 
 class ListFragment : RowsSupportFragment() {
 
     private var itemSelectedListener: ((DataModel.Result.Detail) -> Unit)? = null
-    private var rootAdapter: ArrayObjectAdapter =
-        ArrayObjectAdapter(ListRowPresenter(FocusHighlight.ZOOM_FACTOR_MEDIUM))
+    private var itemClickListener: ((DataModel.Result.Detail) -> Unit)? = null
+    private var listRowPresenter = object: ListRowPresenter(FocusHighlight.ZOOM_FACTOR_MEDIUM) {
+        override fun isUsingDefaultListSelectEffect(): Boolean {
+            return false
+        }
+    }.apply {
+        shadowEnabled=false
+    }
+
+    private var rootAdapter: ArrayObjectAdapter = ArrayObjectAdapter(listRowPresenter)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -21,6 +30,8 @@ class ListFragment : RowsSupportFragment() {
         adapter = rootAdapter
 
         onItemViewSelectedListener = ItemViewSelectedListener()
+        onItemViewClickedListener = ItemViewClickListener()
+
     }
 
     fun bindData(dataList: DataModel) {
@@ -39,9 +50,40 @@ class ListFragment : RowsSupportFragment() {
         }
 
     }
+    fun bindMoviesData(dataList: DataModel) {
 
+        dataList.result.forEachIndexed { index, result ->
+            val arrayObjectAdapter = ArrayObjectAdapter(ItemMoviesPresenter())
+
+            result.details.forEach {
+                arrayObjectAdapter.add(it)
+            }
+
+            val headerItem = HeaderItem(result.title)
+            val listRow = ListRow(headerItem, arrayObjectAdapter)
+            rootAdapter.add(listRow)
+
+        }
+
+    }
+
+    fun bindCastData(list:List<CastResponse.Cast>){
+        val arrayObjectAdapter = ArrayObjectAdapter(CastItemPresenter())
+        list.forEach { content->
+            arrayObjectAdapter.add(content)
+        }
+        val headerItem = HeaderItem("Cast & Crew")
+        val listRow = ListRow(headerItem, arrayObjectAdapter)
+        rootAdapter.add(listRow)
+    }
     fun setOnContentSelectedListener(listener : (DataModel.Result.Detail) -> Unit){
         this.itemSelectedListener = listener
+    }
+    fun setOnItemClickListener(clicker : (DataModel.Result.Detail) -> Unit){
+        this.itemClickListener = clicker
+    }
+
+    fun requestFocus() {
     }
 
     inner class ItemViewSelectedListener : OnItemViewSelectedListener{
@@ -55,6 +97,19 @@ class ListFragment : RowsSupportFragment() {
                 itemSelectedListener?.invoke(item)
             }
 
+        }
+
+    }
+    inner class ItemViewClickListener : OnItemViewClickedListener {
+        override fun onItemClicked(
+            itemViewHolder: Presenter.ViewHolder?,
+            item: Any?,
+            rowViewHolder: RowPresenter.ViewHolder?,
+            row: Row?
+        ) {
+            if(item is DataModel.Result.Detail) {
+                itemClickListener?.invoke(item)
+            }
         }
 
     }
